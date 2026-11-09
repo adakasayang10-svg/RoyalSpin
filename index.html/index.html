@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROYALSPIN</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#090b12;
+ color:white;
+ font-family:Arial,sans-serif;
+ text-align:center;
+}
+header{
+ padding:25px;
+ background:#151722;
+ border-bottom:2px solid #d6ad55;
+}
+h1{color:#e8bd62;letter-spacing:4px}
+.container{padding:25px 15px}
+.card{
+ background:#171b29;
+ border:1px solid #bd974d;
+ border-radius:15px;
+ padding:25px;
+ max-width:400px;
+ margin:20px auto;
+}
+.balance{color:#f5c967;font-size:25px}
+.slots{
+ display:flex;
+ justify-content:center;
+ gap:12px;
+ margin:25px 0;
+}
+.slot{
+ background:#fff;
+ color:#111;
+ font-size:45px;
+ padding:15px;
+ border-radius:10px;
+ width:85px;
+}
+button{
+ background:linear-gradient(90deg,#bd8b32,#f4d27b);
+ border:0;
+ padding:15px 30px;
+ border-radius:8px;
+ font-weight:bold;
+ font-size:16px;
+}
+small{color:#aaa}
+</style>
+</head>
+<body>
+<header>
+<h1>ROYALSPIN</h1>
+<small>VIRTUAL ARCADE</small>
+</header>
+
+<div class="container">
+<div class="card">
+<h2>Selamat Datang!</h2>
+<p>Permainan simulasi kredit maya.</p>
+<p>Kredit maya anda</p>
+<div class="balance" id="balance">1000</div>
+</div>
+
+<div class="card">
+<h2>🎰 SLOT SIMULATOR</h2>
+<div class="slots">
+<div class="slot" id="s1">🍒</div>
+<div class="slot" id="s2">⭐</div>
+<div class="slot" id="s3">🍋</div>
+</div>
+<button onclick="spin()">MAIN SIMULASI</button>
+<p id="result">Tekan butang untuk bermain.</p>
+</div>
+
+<small>
+Kredit maya sahaja. Tiada wang sebenar,
+deposit atau pengeluaran tunai.
+</small>
+</div>
+
+<script>
+let credits=1000;
+const icons=["🍒","⭐","🍋","💎","🔔"];
+
+function spin(){
+ if(credits<10){
+ document.getElementById("result").innerText=
+ "Kredit simulasi tidak mencukupi.";
+ return;
+ }
+ credits-=10;
+ let a=icons[Math.floor(Math.random()*5)];
+ let b=icons[Math.floor(Math.random()*5)];
+ let c=icons[Math.floor(Math.random()*5)];
+
+ document.getElementById("s1").innerText=a;
+ document.getElementById("s2").innerText=b;
+ document.getElementById("s3").innerText=c;
+
+ if(a===b&&b===c){
+ credits+=30;
+ document.getElementById("result").innerText=
+ "Tahniah! +30 kredit maya.";
+ }else{
+ document.getElementById("result").innerText=
+ "Cuba lagi!";
+ }
+
+ document.getElementById("balance").innerText=credits;
+}
+</script>
+</body>
+</html>
